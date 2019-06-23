@@ -1,4 +1,4 @@
-﻿namespace BeatSaberModManager
+﻿namespace VRCModManager
 {
     partial class FormMain
     {
@@ -39,6 +39,8 @@
             this.tabPageCore = new System.Windows.Forms.TabPage();
             this.listViewMods = new System.Windows.Forms.ListView();
             this.columnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderLoader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderGameVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAuthor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -64,7 +66,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxPluginsPath = new System.Windows.Forms.TextBox();
             this.helpInfoLabel3 = new System.Windows.Forms.Label();
-            this.comboBox_gameVersions = new System.Windows.Forms.ComboBox();
             this.tabControlMain.SuspendLayout();
             this.tabPageCore.SuspendLayout();
             this.contextMenuStripMain.SuspendLayout();
@@ -81,14 +82,14 @@
             this.textBoxDirectory.Enabled = false;
             this.textBoxDirectory.Location = new System.Drawing.Point(10, 25);
             this.textBoxDirectory.Name = "textBoxDirectory";
-            this.textBoxDirectory.Size = new System.Drawing.Size(454, 22);
+            this.textBoxDirectory.Size = new System.Drawing.Size(532, 22);
             this.textBoxDirectory.TabIndex = 0;
             this.textBoxDirectory.TextChanged += new System.EventHandler(this.textBoxDirectory_TextChanged);
             // 
             // buttonFolderBrowser
             // 
             this.buttonFolderBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonFolderBrowser.Location = new System.Drawing.Point(470, 25);
+            this.buttonFolderBrowser.Location = new System.Drawing.Point(548, 24);
             this.buttonFolderBrowser.Name = "buttonFolderBrowser";
             this.buttonFolderBrowser.Size = new System.Drawing.Size(26, 23);
             this.buttonFolderBrowser.TabIndex = 1;
@@ -101,9 +102,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 13);
+            this.label1.Size = new System.Drawing.Size(110, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Beat Saber Folder Path:";
+            this.label1.Text = "VRChat Folder Path:";
             // 
             // buttonInstall
             // 
@@ -160,6 +161,8 @@
             this.listViewMods.CheckBoxes = true;
             this.listViewMods.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderName,
+            this.columnHeaderLoader,
+            this.columnHeaderGameVersion,
             this.columnHeaderAuthor,
             this.columnHeaderVersion});
             this.listViewMods.ContextMenuStrip = this.contextMenuStripMain;
@@ -176,17 +179,25 @@
             // columnHeaderName
             // 
             this.columnHeaderName.Text = "Name";
-            this.columnHeaderName.Width = 261;
+            this.columnHeaderName.Width = 200;
+            // 
+            // columnHeaderLoader
+            // 
+            this.columnHeaderLoader.Text = "Loader";
+            // 
+            // columnHeaderGameVersion
+            // 
+            this.columnHeaderGameVersion.Text = "Game Version";
+            this.columnHeaderGameVersion.Width = 90;
             // 
             // columnHeaderAuthor
             // 
             this.columnHeaderAuthor.Text = "Author";
-            this.columnHeaderAuthor.Width = 150;
+            this.columnHeaderAuthor.Width = 132;
             // 
             // columnHeaderVersion
             // 
             this.columnHeaderVersion.Text = "Version";
-            this.columnHeaderVersion.Width = 107;
             // 
             // contextMenuStripMain
             // 
@@ -225,7 +236,7 @@
             // 
             this.linkLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(281, 79);
+            this.linkLabel1.Location = new System.Drawing.Point(274, 78);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(52, 13);
             this.linkLabel1.TabIndex = 9;
@@ -237,7 +248,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(218, 79);
+            this.label5.Location = new System.Drawing.Point(211, 78);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 13);
             this.label5.TabIndex = 8;
@@ -351,12 +362,13 @@
             // 
             this.linkLabelDiscord.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.linkLabelDiscord.AutoSize = true;
-            this.linkLabelDiscord.Location = new System.Drawing.Point(189, 137);
+            this.linkLabelDiscord.Location = new System.Drawing.Point(205, 137);
             this.linkLabelDiscord.Name = "linkLabelDiscord";
-            this.linkLabelDiscord.Size = new System.Drawing.Size(145, 13);
+            this.linkLabelDiscord.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.linkLabelDiscord.Size = new System.Drawing.Size(108, 13);
             this.linkLabelDiscord.TabIndex = 1;
             this.linkLabelDiscord.TabStop = true;
-            this.linkLabelDiscord.Text = "discord.gg/beatsabermods";
+            this.linkLabelDiscord.Text = "discord.gg/rCqKSvR";
             this.linkLabelDiscord.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.linkLabelDiscord.Click += new System.EventHandler(this.linkLabelDiscord_Click);
             // 
@@ -364,11 +376,11 @@
             // 
             this.labelDiscordInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelDiscordInfo.AutoSize = true;
-            this.labelDiscordInfo.Location = new System.Drawing.Point(117, 114);
+            this.labelDiscordInfo.Location = new System.Drawing.Point(160, 114);
             this.labelDiscordInfo.Name = "labelDiscordInfo";
-            this.labelDiscordInfo.Size = new System.Drawing.Size(303, 13);
+            this.labelDiscordInfo.Size = new System.Drawing.Size(208, 13);
             this.labelDiscordInfo.TabIndex = 0;
-            this.labelDiscordInfo.Text = "Join us on the Beat Saber Modding Group Discord server!";
+            this.labelDiscordInfo.Text = "Join us on the VRCTools Discord server!";
             this.labelDiscordInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonViewInfo
@@ -423,9 +435,9 @@
             this.helpInfoLabel1.AutoSize = true;
             this.helpInfoLabel1.Location = new System.Drawing.Point(3, 0);
             this.helpInfoLabel1.Name = "helpInfoLabel1";
-            this.helpInfoLabel1.Size = new System.Drawing.Size(269, 13);
+            this.helpInfoLabel1.Size = new System.Drawing.Size(260, 13);
             this.helpInfoLabel1.TabIndex = 0;
-            this.helpInfoLabel1.Text = "Most mods will install a .dll into the Plugins folder:";
+            this.helpInfoLabel1.Text = "Most mods will install a .dll into the Mods folder:";
             // 
             // label2
             // 
@@ -461,25 +473,11 @@
             this.helpInfoLabel3.TabIndex = 3;
             this.helpInfoLabel3.Text = "You can uninstall mods by removing the .dll from that folder.";
             // 
-            // comboBox_gameVersions
-            // 
-            this.comboBox_gameVersions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_gameVersions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_gameVersions.DropDownWidth = 70;
-            this.comboBox_gameVersions.Enabled = false;
-            this.comboBox_gameVersions.FormattingEnabled = true;
-            this.comboBox_gameVersions.Location = new System.Drawing.Point(502, 26);
-            this.comboBox_gameVersions.Name = "comboBox_gameVersions";
-            this.comboBox_gameVersions.Size = new System.Drawing.Size(72, 21);
-            this.comboBox_gameVersions.TabIndex = 11;
-            this.comboBox_gameVersions.SelectedIndexChanged += new System.EventHandler(this.comboBox_gameVersions_SelectedIndexChanged);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(588, 436);
-            this.Controls.Add(this.comboBox_gameVersions);
             this.Controls.Add(this.panelInfo);
             this.Controls.Add(this.buttonViewInfo);
             this.Controls.Add(this.tabControlMain);
@@ -492,7 +490,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Beat Saber Mod Manager";
+            this.Text = "VRChat Mod Manager";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.tabControlMain.ResumeLayout(false);
             this.tabPageCore.ResumeLayout(false);
@@ -543,9 +541,9 @@
         private System.Windows.Forms.Label labelDiscordInfo;
         private System.Windows.Forms.LinkLabel linkLabelDiscord;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox_gameVersions;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.ColumnHeader columnHeaderLoader;
+        private System.Windows.Forms.ColumnHeader columnHeaderGameVersion;
     }
 }
-

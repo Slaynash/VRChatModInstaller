@@ -4,10 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Management;
 using System.Windows.Forms;
-using BeatSaberModManager.Dependencies;
+using VRCModManager.Dependencies;
 using Microsoft.Win32;
 
-namespace BeatSaberModManager.Core
+namespace VRCModManager.Core
 {
     public class PathLogic
     {

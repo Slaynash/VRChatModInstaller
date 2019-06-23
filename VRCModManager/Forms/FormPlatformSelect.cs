@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using BeatSaberModManager.Core;
-namespace BeatSaberModManager
+using VRCModManager.Core;
+namespace VRCModManager
 {
     public partial class FormPlatformSelect : Form
     {

@@ -4,26 +4,19 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
-using BeatSaberModManager.DataModels;
-using BeatSaberModManager.Dependencies.SimpleJSON;
+using VRCModManager.DataModels;
+using VRCModManager.Dependencies.SimpleJSON;
 using SemVer;
 using Version = SemVer.Version;
 
-namespace BeatSaberModManager.Core
+namespace VRCModManager.Core
 {
     public class RemoteLogic
     {
-#if DEBUG
-        private const string ModSaberURL = "https://bsmodmanager.slaynash.fr";
-#else
         private const string ModSaberURL = "https://vrcmodmanager.slaynash.fr";
-#endif
 
         private const string ApiVersion = "1.2";
         private readonly string ApiURL = $"{ModSaberURL}/api/v{ApiVersion}";
-
-        public GameVersion[] gameVersions;
-        public GameVersion selectedGameVersion;
 
         public List<ReleaseInfo> releases;
 
@@ -31,29 +24,6 @@ namespace BeatSaberModManager.Core
         {
             releases = new List<ReleaseInfo>();
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-        }
-
-        public void GetGameVersions()
-        {
-            string raw = Fetch($"{ApiURL}/site/gameversions");
-            var gameVersionsRaw = JSON.Parse(raw);
-
-            List<GameVersion> gvList = new List<GameVersion>();
-            for (int i = 0; i < gameVersionsRaw.Count; i++)
-            {
-                var current = gameVersionsRaw[i];
-
-                GameVersion gv = new GameVersion(
-                    current["id"],
-                    current["value"],
-                    current["manifest"]
-                );
-
-                gvList.Add(gv);
-            }
-
-            gameVersions = gvList.ToArray();
-            selectedGameVersion = gameVersions[0];
         }
 
         public void PopulateReleases()
@@ -79,19 +49,19 @@ namespace BeatSaberModManager.Core
 
                         CreateRelease(
                             new ReleaseInfo(current["name"], current["details"]["title"], current["version"], current["details"]["author"]["name"],
-                            current["details"]["description"], current["meta"]["weight"], current["gameVersion"]["value"],
+                            current["meta"]["loader"], current["details"]["description"], current["meta"]["weight"], current["gameVersion"]["value"],
                             steam["url"], current["meta"]["category"], Platform.Steam, dependsOn, conflictsWith));
 
                         CreateRelease(
                             new ReleaseInfo(current["name"], current["details"]["title"], current["version"], current["details"]["author"]["name"],
-                            current["details"]["description"], current["meta"]["weight"], current["gameVersion"]["value"],
+                            current["meta"]["loader"], current["details"]["description"], current["meta"]["weight"], current["gameVersion"]["value"],
                             oculus["url"], current["meta"]["category"], Platform.Oculus, dependsOn, conflictsWith));
                     }
                     else
                     {
                         CreateRelease(
                             new ReleaseInfo(current["name"], current["details"]["title"], current["version"], current["details"]["author"]["name"],
-                            current["details"]["description"], current["meta"]["weight"], current["gameVersion"]["value"],
+                            current["meta"]["loader"], current["details"]["description"], current["meta"]["weight"], current["gameVersion"]["value"],
                             files["steam"]["url"], current["meta"]["category"], Platform.Default, dependsOn, conflictsWith));
                     }
                 }
@@ -149,9 +119,6 @@ namespace BeatSaberModManager.Core
 
         private void CreateRelease(ReleaseInfo release)
         {
-            if (release.gameVersion != selectedGameVersion.value)
-                return;
-
             ReleaseInfo current = releases.Find(x => x.name == release.name);
             if (current == null)
             {

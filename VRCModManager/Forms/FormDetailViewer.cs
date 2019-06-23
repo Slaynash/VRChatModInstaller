@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using CommonMark;
-using BeatSaberModManager.DataModels;
+using VRCModManager.DataModels;
 using mshtml;
-namespace BeatSaberModManager
+namespace VRCModManager
 {
     public partial class FormDetailViewer : Form
     {

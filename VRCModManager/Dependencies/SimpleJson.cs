@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BeatSaberModManager.Dependencies
+namespace VRCModManager.Dependencies
 {
     /* * * * *
 * A simple JSON Parser / builder

@@ -1,4 +1,4 @@
-﻿using BeatSaberModManager.Dependencies;
+﻿using VRCModManager.Dependencies;
 using System;
 using System.IO;
 using System.Net;
@@ -7,13 +7,13 @@ using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
 using System.Reflection;
 
-namespace BeatSaberModManager.Core
+namespace VRCModManager.Core
 {
     public static class Helper
     {
 
         public static string Get(string URL) {
-
+            Console.WriteLine("GET " + URL);
             try {
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(URL);
                 request.Method = "GET";

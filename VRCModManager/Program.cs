@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.Reflection;
 
-namespace BeatSaberModManager
+namespace VRCModManager
 {
     static class Program
     {

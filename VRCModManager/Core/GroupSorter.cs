@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BeatSaberModManager.DataModels;
+using VRCModManager.DataModels;
 using static System.Windows.Forms.ListView;
 
-namespace BeatSaberModManager.Core
+namespace VRCModManager.Core
 {
     class GroupComparer : IComparer<ListViewGroup>
     {

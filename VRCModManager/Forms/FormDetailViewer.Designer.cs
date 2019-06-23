@@ -1,4 +1,4 @@
-﻿namespace BeatSaberModManager
+﻿namespace VRCModManager
 {
     partial class FormDetailViewer
     {

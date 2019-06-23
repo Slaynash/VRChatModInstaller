@@ -7,10 +7,10 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BeatSaberModManager.Dependencies.SimpleJSON;
+using VRCModManager.Dependencies.SimpleJSON;
 using Version = SemVer.Version;
 
-namespace BeatSaberModManager.Core
+namespace VRCModManager.Core
 {
     class UpdateLogic
     {
@@ -55,6 +55,7 @@ namespace BeatSaberModManager.Core
             if (File.Exists(tempPath))
                 File.Delete(tempPath);
 
+            /*
             // Fetch release info
             JSONNode release = LatestRelease();
 
@@ -117,6 +118,7 @@ namespace BeatSaberModManager.Core
 
             Process.GetCurrentProcess().Kill();
             Environment.Exit(0);
+            */
         }
     }
 }

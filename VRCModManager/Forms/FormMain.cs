@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using BeatSaberModManager.Core;
+using VRCModManager.Core;
 using System.Threading;
 using System.Collections.Generic;
-using BeatSaberModManager.DataModels;
+using VRCModManager.DataModels;
 using System.Diagnostics;
 using System.Drawing;
 using SemVer;
 using Version = SemVer.Version;
 
-namespace BeatSaberModManager
+namespace VRCModManager
 {
     public partial class FormMain : Form
     {
@@ -52,14 +52,6 @@ namespace BeatSaberModManager
 
         private void RemoteLoad()
         {
-            UpdateStatus("Loading game versions...");
-            remote.GetGameVersions();
-            for (int i = 0; i < remote.gameVersions.Length; i++)
-            {
-                GameVersion gv = remote.gameVersions[i];
-                this.Invoke((MethodInvoker)(() => { comboBox_gameVersions.Items.Add(gv.value); })); 
-            }
-            this.Invoke((MethodInvoker)(() => { comboBox_gameVersions.SelectedIndex = 0; }));
             UpdateStatus("Loading releases...");
             remote.PopulateReleases();
             installer = new InstallerLogic(remote.releases, path.installPath);
@@ -67,36 +59,8 @@ namespace BeatSaberModManager
             this.Invoke((MethodInvoker)(() => { ShowReleases(); }));
         }
 
-        bool first = true;
-        private void comboBox_gameVersions_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // For some reason this breaks deps/conflicts
-            // God knows why
-            // listViewMods.Items.Clear();
-            UpdateStatus("Loading releases...");
-            comboBox_gameVersions.Enabled = false;
-            if (!first)
-            {
-                ComboBox comboBox = (ComboBox)sender;
-                GameVersion gameVersion = remote.gameVersions[comboBox.SelectedIndex];
-
-                remote.selectedGameVersion = gameVersion;
-                new Thread(() => { LoadFromComboBox(); }).Start();
-            } else
-            {
-                first = false;
-            }
-        }
-               
-        private void LoadFromComboBox()
-        {
-            remote.PopulateReleases();
-            this.Invoke((MethodInvoker)(() => { ShowReleases(); }));
-        }
-
         private void ShowReleases()
         {
-            comboBox_gameVersions.Enabled = true;
             Dictionary<string, int> groups = new Dictionary<string, int>();
 
             listViewMods.Groups.Clear();
@@ -111,6 +75,8 @@ namespace BeatSaberModManager
                     Tag = release
                 };
 
+                item.SubItems.Add(release.loader);
+                item.SubItems.Add(release.gameVersion);
                 item.SubItems.Add(release.author);
                 item.SubItems.Add(release.version);
 
@@ -167,8 +133,8 @@ namespace BeatSaberModManager
 
         private void CheckDefaultMod(ReleaseInfo release, ListViewItem item)
         {
-            string link = release.downloadLink.ToLower();
-            if (link.Contains("song-loader") || link.Contains("ipa"))
+            string name = release.name.ToLower();
+            if (name == "vrcmodloader")
             {
                 item.Text = $"[REQUIRED] {release.title}";
                 item.BackColor = Color.LightGray;
@@ -176,16 +142,6 @@ namespace BeatSaberModManager
 
                 release.install = true;
                 item.Checked = true;
-            }
-
-            if (link.Contains("song-loader") || link.Contains("scoresaber") || link.Contains("beatsaver"))
-            {
-                item.Checked = true;
-                release.install = true;
-            }
-            else
-            {
-              //  release.install = false;
             }
         }
         #endregion

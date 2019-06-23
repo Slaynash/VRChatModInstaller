@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BeatSaberModManager.DataModels
+namespace VRCModManager.DataModels
 {
     public class ReleaseInfo
     {
@@ -15,6 +15,8 @@ namespace BeatSaberModManager.DataModels
 
         public string version;
         public string description;
+
+        public string loader;
 
         public int weight;
         public string category;
@@ -33,7 +35,7 @@ namespace BeatSaberModManager.DataModels
         public List<ModLink> conflictsWith;
 
         public ReleaseInfo(
-            string _name, string _title, string _version, string _author, string _description,
+            string _name, string _title, string _version, string _author, string _loader, string _description,
             int _weight, string _gameVersion, string _downloadLink, string _category,
             Platform _platform, List<ModLink> _dependsOn, List<ModLink> _conflictsWith
         )
@@ -42,6 +44,7 @@ namespace BeatSaberModManager.DataModels
             title = _title;
             version = _version;
             author = _author;
+            loader = _loader;
             description = _description;
             weight = _weight;
             gameVersion = _gameVersion;

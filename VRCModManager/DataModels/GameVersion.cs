@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeatSaberModManager.DataModels
+namespace VRCModManager.DataModels
 {
     public struct GameVersion
     {

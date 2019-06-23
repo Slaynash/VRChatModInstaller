@@ -1,10 +1,10 @@
-﻿using BeatSaberModManager.DataModels;
+﻿using VRCModManager.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace BeatSaberModManager.Core
+namespace VRCModManager.Core
 {
     public class InstallerLogic
     {
