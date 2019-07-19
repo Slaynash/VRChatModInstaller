@@ -68,5 +68,11 @@ namespace VRCModManager.Core
             client.Proxy = null;
             return client.DownloadData(url);
         }
+        public static void DownloadFile(string url, string directory, string modname, string modversion)
+        {
+            WebClient client = new WebClient();
+            client.Proxy = null;
+            client.DownloadFile(url, Path.Combine(directory, "Mods", modname + "." + modversion + ".dll"));
+        }
     }
 }

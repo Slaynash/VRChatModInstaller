@@ -309,11 +309,11 @@ namespace VRCModManager
         {
             if (string.IsNullOrWhiteSpace(textBoxDirectory.Text))
             {
-                textBoxPluginsPath.Text = "${Install Directory}\\Plugins";
+                textBoxPluginsPath.Text = "${Install Directory}\\Mods";
             }
             else
             {
-                textBoxPluginsPath.Text = textBoxDirectory.Text + "\\Plugins";
+                textBoxPluginsPath.Text = textBoxDirectory.Text + "\\Mods";
             }
         }
 

@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.IO;
+using System.Linq;
 
 namespace VRCModManager.Core
 {
@@ -40,10 +42,21 @@ namespace VRCModManager.Core
                         if (release.install)
                         {
                             StatusUpdate(string.Format("Downloading {0}...", release.title));
-                            byte[] file = Helper.GetFile(release.downloadLink);
-                            StatusUpdate(string.Format("Unzipping {0}...", release.title));
-                            Helper.UnzipFile(file, installDirectory);
-                            StatusUpdate(string.Format("Unzipped {0}", release.title));
+                            if (release.downloadLink.Split('?')[0].EndsWith(".dll"))
+                            {
+                                //Delete old file
+                                if (Directory.GetFiles(Path.Combine(installDirectory, "Mods")).Any(f => f == release.name + ".dll"))
+                                    File.Delete(Path.Combine(installDirectory, "Mods", release.name + ".dll"));
+
+                                Helper.DownloadFile(release.downloadLink, installDirectory, release.name, release.version);
+                            }
+                            else
+                            {
+                                byte[] file = Helper.GetFile(release.downloadLink);
+                                StatusUpdate(string.Format("Unzipping {0}...", release.title));
+                                Helper.UnzipFile(file, installDirectory);
+                                StatusUpdate(string.Format("Unzipped {0}", release.title));
+                            }
                         }
                     }
                     catch (Exception ex)
