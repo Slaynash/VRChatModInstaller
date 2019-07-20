@@ -55,7 +55,6 @@ namespace VRCModManager.Core
             if (File.Exists(tempPath))
                 File.Delete(tempPath);
 
-            /*
             // Fetch release info
             JSONNode release = LatestRelease();
 
@@ -118,7 +117,6 @@ namespace VRCModManager.Core
 
             Process.GetCurrentProcess().Kill();
             Environment.Exit(0);
-            */
         }
     }
 }

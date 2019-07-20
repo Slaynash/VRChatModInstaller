@@ -48,13 +48,8 @@
             this.tabPageCredits = new System.Windows.Forms.TabPage();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label5 = new System.Windows.Forms.Label();
-            this.linkLabelContributors = new System.Windows.Forms.LinkLabel();
-            this.linkLabellolPants = new System.Windows.Forms.LinkLabel();
             this.linkLabelUmbranox = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
-            this.labelModSaber2 = new System.Windows.Forms.Label();
-            this.linkLabelModSaberLink = new System.Windows.Forms.LinkLabel();
-            this.labelModSaber1 = new System.Windows.Forms.Label();
             this.tabPageHelp = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.linkLabelDiscord = new System.Windows.Forms.LinkLabel();
@@ -179,11 +174,12 @@
             // columnHeaderName
             // 
             this.columnHeaderName.Text = "Name";
-            this.columnHeaderName.Width = 200;
+            this.columnHeaderName.Width = 172;
             // 
             // columnHeaderLoader
             // 
             this.columnHeaderLoader.Text = "Loader";
+            this.columnHeaderLoader.Width = 75;
             // 
             // columnHeaderGameVersion
             // 
@@ -193,7 +189,7 @@
             // columnHeaderAuthor
             // 
             this.columnHeaderAuthor.Text = "Author";
-            this.columnHeaderAuthor.Width = 132;
+            this.columnHeaderAuthor.Width = 113;
             // 
             // columnHeaderVersion
             // 
@@ -217,13 +213,8 @@
             // 
             this.tabPageCredits.Controls.Add(this.linkLabel1);
             this.tabPageCredits.Controls.Add(this.label5);
-            this.tabPageCredits.Controls.Add(this.linkLabelContributors);
-            this.tabPageCredits.Controls.Add(this.linkLabellolPants);
             this.tabPageCredits.Controls.Add(this.linkLabelUmbranox);
             this.tabPageCredits.Controls.Add(this.label3);
-            this.tabPageCredits.Controls.Add(this.labelModSaber2);
-            this.tabPageCredits.Controls.Add(this.linkLabelModSaberLink);
-            this.tabPageCredits.Controls.Add(this.labelModSaber1);
             this.tabPageCredits.Location = new System.Drawing.Point(4, 22);
             this.tabPageCredits.Name = "tabPageCredits";
             this.tabPageCredits.Size = new System.Drawing.Size(558, 229);
@@ -236,7 +227,7 @@
             // 
             this.linkLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(274, 78);
+            this.linkLabel1.Location = new System.Drawing.Point(296, 114);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(52, 13);
             this.linkLabel1.TabIndex = 9;
@@ -248,42 +239,18 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(211, 78);
+            this.label5.Location = new System.Drawing.Point(195, 114);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.Size = new System.Drawing.Size(100, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Updated by";
+            this.label5.Text = "VRChat version by";
             this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // linkLabelContributors
-            // 
-            this.linkLabelContributors.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.linkLabelContributors.AutoSize = true;
-            this.linkLabelContributors.Location = new System.Drawing.Point(231, 147);
-            this.linkLabelContributors.Name = "linkLabelContributors";
-            this.linkLabelContributors.Size = new System.Drawing.Size(73, 13);
-            this.linkLabelContributors.TabIndex = 7;
-            this.linkLabelContributors.TabStop = true;
-            this.linkLabelContributors.Text = "Contributors";
-            this.linkLabelContributors.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelContributors_LinkClicked);
-            // 
-            // linkLabellolPants
-            // 
-            this.linkLabellolPants.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.linkLabellolPants.AutoSize = true;
-            this.linkLabellolPants.Location = new System.Drawing.Point(424, 101);
-            this.linkLabellolPants.Name = "linkLabellolPants";
-            this.linkLabellolPants.Size = new System.Drawing.Size(48, 13);
-            this.linkLabellolPants.TabIndex = 5;
-            this.linkLabellolPants.TabStop = true;
-            this.linkLabellolPants.Text = "lolPants";
-            this.linkLabellolPants.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabellolPants_LinkClicked);
             // 
             // linkLabelUmbranox
             // 
             this.linkLabelUmbranox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.linkLabelUmbranox.AutoSize = true;
-            this.linkLabelUmbranox.Location = new System.Drawing.Point(301, 124);
+            this.linkLabelUmbranox.Location = new System.Drawing.Point(335, 92);
             this.linkLabelUmbranox.Name = "linkLabelUmbranox";
             this.linkLabelUmbranox.Size = new System.Drawing.Size(60, 13);
             this.linkLabelUmbranox.TabIndex = 4;
@@ -295,44 +262,11 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(173, 124);
+            this.label3.Location = new System.Drawing.Point(154, 92);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(134, 13);
+            this.label3.Size = new System.Drawing.Size(185, 13);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Mod Installer created by ";
-            // 
-            // labelModSaber2
-            // 
-            this.labelModSaber2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelModSaber2.AutoSize = true;
-            this.labelModSaber2.Location = new System.Drawing.Point(367, 101);
-            this.labelModSaber2.Name = "labelModSaber2";
-            this.labelModSaber2.Size = new System.Drawing.Size(60, 13);
-            this.labelModSaber2.TabIndex = 2;
-            this.labelModSaber2.Text = "created by";
-            // 
-            // linkLabelModSaberLink
-            // 
-            this.linkLabelModSaberLink.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.linkLabelModSaberLink.AutoSize = true;
-            this.linkLabelModSaberLink.Location = new System.Drawing.Point(311, 101);
-            this.linkLabelModSaberLink.Name = "linkLabelModSaberLink";
-            this.linkLabelModSaberLink.Size = new System.Drawing.Size(60, 13);
-            this.linkLabelModSaberLink.TabIndex = 1;
-            this.linkLabelModSaberLink.TabStop = true;
-            this.linkLabelModSaberLink.Text = "ModSaber";
-            this.linkLabelModSaberLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelModSaberLink_LinkClicked);
-            // 
-            // labelModSaber1
-            // 
-            this.labelModSaber1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelModSaber1.AutoSize = true;
-            this.labelModSaber1.Location = new System.Drawing.Point(84, 101);
-            this.labelModSaber1.Name = "labelModSaber1";
-            this.labelModSaber1.Size = new System.Drawing.Size(232, 13);
-            this.labelModSaber1.TabIndex = 0;
-            this.labelModSaber1.Text = "Original Mod Hosting Platform Provided by ";
-            this.labelModSaber1.Click += new System.EventHandler(this.labelModSaber1_Click);
+            this.label3.Text = "Mod Installer originally created by ";
             // 
             // tabPageHelp
             // 
@@ -351,7 +285,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(212, 91);
+            this.label4.Location = new System.Drawing.Point(232, 86);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(94, 13);
             this.label4.TabIndex = 2;
@@ -362,7 +296,7 @@
             // 
             this.linkLabelDiscord.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.linkLabelDiscord.AutoSize = true;
-            this.linkLabelDiscord.Location = new System.Drawing.Point(205, 137);
+            this.linkLabelDiscord.Location = new System.Drawing.Point(225, 132);
             this.linkLabelDiscord.Name = "linkLabelDiscord";
             this.linkLabelDiscord.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.linkLabelDiscord.Size = new System.Drawing.Size(108, 13);
@@ -376,7 +310,7 @@
             // 
             this.labelDiscordInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelDiscordInfo.AutoSize = true;
-            this.labelDiscordInfo.Location = new System.Drawing.Point(160, 114);
+            this.labelDiscordInfo.Location = new System.Drawing.Point(180, 109);
             this.labelDiscordInfo.Name = "labelDiscordInfo";
             this.labelDiscordInfo.Size = new System.Drawing.Size(208, 13);
             this.labelDiscordInfo.TabIndex = 0;
@@ -526,11 +460,6 @@
         private System.Windows.Forms.ColumnHeader columnHeaderVersion;
         private System.Windows.Forms.LinkLabel linkLabelUmbranox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label labelModSaber2;
-        private System.Windows.Forms.LinkLabel linkLabelModSaberLink;
-        private System.Windows.Forms.Label labelModSaber1;
-        private System.Windows.Forms.LinkLabel linkLabellolPants;
-        private System.Windows.Forms.LinkLabel linkLabelContributors;
         private System.Windows.Forms.Panel panelInfo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelInfo;
         private System.Windows.Forms.Label helpInfoLabel1;
