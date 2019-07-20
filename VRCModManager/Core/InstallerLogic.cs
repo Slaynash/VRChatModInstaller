@@ -44,9 +44,12 @@ namespace VRCModManager.Core
                             StatusUpdate(string.Format("Downloading {0}...", release.title));
                             if (release.downloadLink.Split('?')[0].EndsWith(".dll"))
                             {
-                                //Delete old file
-                                if (Directory.GetFiles(Path.Combine(installDirectory, "Mods")).Any(f => f == release.name + ".dll"))
-                                    File.Delete(Path.Combine(installDirectory, "Mods", release.name + ".dll"));
+                                foreach(string f in from filepath in (Directory.GetFiles(Path.Combine(installDirectory, "Mods")))
+                                                    where (Path.GetFileName(filepath).ToLower().StartsWith(release.name.ToLower() + ".") && filepath.ToLower().EndsWith(".dll"))
+                                                    select filepath)
+                                {
+                                    File.Delete(f);
+                                }
 
                                 Helper.DownloadFile(release.downloadLink, installDirectory, release.name, release.version);
                             }
