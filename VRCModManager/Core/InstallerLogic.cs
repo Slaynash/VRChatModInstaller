@@ -1,4 +1,4 @@
-﻿using VRCModManager.DataModels;
+using VRCModManager.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,6 +19,7 @@ namespace VRCModManager.Core
         #region Variables
         List<ReleaseInfo> releases;
         public string installDirectory;
+        public DirectoryInfo modsDirectory;
         #endregion
 
         #region Constructor
@@ -26,6 +27,7 @@ namespace VRCModManager.Core
         {
             releases = _releases;
             installDirectory = _installDirectory;
+            modsDirectory = new DirectoryInfo(Path.Combine(installDirectory, "Mods"));
         }
         #endregion
 
@@ -42,9 +44,10 @@ namespace VRCModManager.Core
                         if (release.install)
                         {
                             StatusUpdate(string.Format("Downloading {0}...", release.title));
+                            if (!modsDirectory.Exists) Directory.CreateDirectory(modsDirectory.FullName);
                             if (release.downloadLink.Split('?')[0].EndsWith(".dll"))
                             {
-                                foreach(string f in from filepath in (Directory.GetFiles(Path.Combine(installDirectory, "Mods")))
+                                foreach(string f in from filepath in (Directory.GetFiles(modsDirectory.FullName))
                                                     where (Path.GetFileName(filepath).ToLower().StartsWith(release.name.ToLower() + ".") && filepath.ToLower().EndsWith(".dll"))
                                                     select filepath)
                                 {
