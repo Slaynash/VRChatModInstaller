@@ -329,7 +329,7 @@ namespace VRCModManager
 
         private void linkLabelDiscord_Click(object sender, EventArgs e)
         {
-            Process.Start("https://discord.gg/beatsabermods");
+            Process.Start("https://discord.gg/rCqKSvR");
         }
         #endregion
 

@@ -162,6 +162,7 @@
             this.columnHeaderVersion});
             this.listViewMods.ContextMenuStrip = this.contextMenuStripMain;
             this.listViewMods.FullRowSelect = true;
+            this.listViewMods.HideSelection = false;
             this.listViewMods.Location = new System.Drawing.Point(6, 6);
             this.listViewMods.Name = "listViewMods";
             this.listViewMods.Size = new System.Drawing.Size(546, 217);
@@ -312,7 +313,7 @@
             this.labelDiscordInfo.AutoSize = true;
             this.labelDiscordInfo.Location = new System.Drawing.Point(180, 109);
             this.labelDiscordInfo.Name = "labelDiscordInfo";
-            this.labelDiscordInfo.Size = new System.Drawing.Size(208, 13);
+            this.labelDiscordInfo.Size = new System.Drawing.Size(209, 13);
             this.labelDiscordInfo.TabIndex = 0;
             this.labelDiscordInfo.Text = "Join us on the VRCTools Discord server!";
             this.labelDiscordInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
