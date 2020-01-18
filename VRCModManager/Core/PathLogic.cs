@@ -34,19 +34,12 @@ namespace VRCModManager.Core
                 }
             }
 
-            string oculus = GetValidOculusLocation();
-            if (oculus != null)
-            {
-                if (Directory.Exists(oculus))
-                {
-                    if (File.Exists(Path.Combine(oculus, AppFileName)))
-                    {
-                        platform = Platform.Oculus;
-                        installPath = oculus;
-                        return oculus;
-                    }
-                }
-            }
+            //string oculus = GetMoreValidOculusLocation();
+            //DriveLetter = @"C:\";
+            //if (oculus != null)
+            //{
+            //    return oculus;
+            //}
 
             string fallback = GetFallbackDirectory();
             installPath = fallback;
@@ -137,7 +130,7 @@ namespace VRCModManager.Core
         public string DriveLetter;
         public string GetMoreValidOculusLocation()
         {
-            if (DriveLetter == "C")
+            if (DriveLetter == @"C:\")
             {
                 const string CPath1 = @"C:\Oculus\Software\Software\vrchat-vrchat";
                 const string CPath2 = @"C:\Program Files\Oculus\Software\Software\vrchat-vrchat";
@@ -149,7 +142,10 @@ namespace VRCModManager.Core
                 else if (File.Exists(CPath3))
                     return CPath3;
                 else
+                {
+                    ErrorOculusInvalid();
                     return null;
+                }
             }
             if (DriveLetter != null && DriveLetter != "" && !DriveLetter.Contains(" "))
             {
@@ -168,12 +164,12 @@ namespace VRCModManager.Core
 
         public void ErrorOculusNotFound()
         {
-            MessageBox.Show("No valid Oculus path on drive C:, go to Settings to select another drive, or manually select it.", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("No valid Oculus path on drive "+ @"C:\" + ", go to Settings and select another drive, or manually select it.", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public void ErrorOculusInvalid()
         {
-            MessageBox.Show("No valid Oculus path on drive " + DriveLetter + ", go to Settings to select another drive, or manually select it.", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("No valid Oculus path on drive " + DriveLetter + ", go to Settings and select another drive, or manually select it.", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private string NotFoundHandler()
