@@ -8,6 +8,7 @@ using VRCModManager.DataModels;
 using System.Diagnostics;
 using System.Drawing;
 using SemVer;
+using System.IO;
 using Version = SemVer.Version;
 
 namespace VRCModManager
@@ -166,6 +167,18 @@ namespace VRCModManager
         private void buttonFolderBrowser_Click(object sender, EventArgs e)
         {
             textBoxDirectory.Text = path.ManualFind();
+            installer.installDirectory = textBoxDirectory.Text;
+        }
+
+        private void buttonSteam_Click(object sender, EventArgs e)
+        {
+            textBoxDirectory.Text = path.GetSteamLocation();
+            installer.installDirectory = textBoxDirectory.Text;
+        }
+
+        private void buttonOculus_Click(object sender, EventArgs e)
+        {
+            textBoxDirectory.Text = path.GetMoreValidOculusLocation();
             installer.installDirectory = textBoxDirectory.Text;
         }
 
@@ -351,6 +364,51 @@ namespace VRCModManager
         private void tabPageCredits_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/Janni9009");
+        }
+
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            path.DriveLetter = comboBox1.SelectedItem.ToString();
+        }
+
+        private void ComboBox1_TextUpdate(object sender, EventArgs e)
+        {
+            
+        }
+
+        bool Drives = false;
+        private void ComboBox1_DropDown(object sender, EventArgs e)
+        {
+            if (Drives == false)
+            {
+                DriveInfo[] ListAllDrives = DriveInfo.GetDrives();
+                foreach (DriveInfo Drive in ListAllDrives)
+                {
+                    if (Drive.DriveType == DriveType.Fixed)
+                    { comboBox1.Items.Add(Drive); }
+                }
+                Drives = true;
+            }
+        }
+
+        private void ResetBTN_Click(object sender, EventArgs e)
+        {
+            buttonInstall.Enabled = true;
+        }
+
+        private void ButtonModsFolderOpen_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer", textBoxDirectory.Text);
         }
     }
 }

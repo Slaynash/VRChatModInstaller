@@ -57,7 +57,7 @@ namespace VRCModManager.Core
             MessageBox.Show("We couldn't seem to find your VRChat installation, please press \"OK\" and point us to it", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return NotFoundHandler();
         }
-        private string GetSteamLocation()
+        public string GetSteamLocation()
         {
             try
             {
@@ -72,7 +72,7 @@ namespace VRCModManager.Core
             }
            
         }
-        private string GetValidOculusLocation()
+        public string GetValidOculusLocation()
         {
             const string subFolderPath = @"Software\vrchat-vrchat\";
 
@@ -133,27 +133,72 @@ namespace VRCModManager.Core
 
             return null;
         }
+
+        public string DriveLetter;
+        public string GetMoreValidOculusLocation()
+        {
+            if (DriveLetter == "C")
+            {
+                const string CPath1 = @"C:\Oculus\Software\Software\vrchat-vrchat";
+                const string CPath2 = @"C:\Program Files\Oculus\Software\Software\vrchat-vrchat";
+                const string CPath3 = @"C:\Program Files\Oculus\Software\vrchat-vrchat";
+                if (File.Exists(CPath1))
+                    return CPath1;
+                else if (File.Exists(CPath2))
+                    return CPath2;
+                else if (File.Exists(CPath3))
+                    return CPath3;
+                else
+                    return null;
+            }
+            if (DriveLetter != null && DriveLetter != "" && !DriveLetter.Contains(" "))
+            {
+                var FolderPath = DriveLetter + @"Oculus\Software\Software\vrchat-vrchat";
+                if (File.Exists(FolderPath + @"\VRChat.exe"))
+                { return FolderPath; }
+                else
+                {
+                    ErrorOculusInvalid();
+                    return null;
+                }
+            }
+            ErrorOculusNotFound();
+            return null;
+        }
+
+        public void ErrorOculusNotFound()
+        {
+            MessageBox.Show("No valid Oculus path on drive C:, go to Settings to select another drive, or manually select it.", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public void ErrorOculusInvalid()
+        {
+            MessageBox.Show("No valid Oculus path on drive " + DriveLetter + ", go to Settings to select another drive, or manually select it.", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         private string NotFoundHandler()
         {
             bool found = false;
             while (found == false)
             {
-                using (var folderDialog = new FolderBrowserDialog())
+                using (var folderDialog = new OpenFileDialog())
+            {
+                folderDialog.Title = "Select VRChat.exe";
+                folderDialog.FileName = "VRChat.exe";
+                folderDialog.Filter = "VRChat Executable|VRChat.exe";
+                if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (folderDialog.ShowDialog() == DialogResult.OK)
+                    string path = folderDialog.FileName;
+                    if (path.Contains("VRChat.exe"))
                     {
-                        string path = folderDialog.SelectedPath;
-                        if (File.Exists(Path.Combine(path, AppFileName)))
-                        {
-                            FormPlatformSelect selector = new FormPlatformSelect(this);
-                            selector.ShowDialog();
-                            found = true;
-                            return path;
-                        }
-                        else
-                        {
-                            MessageBox.Show("The directory you selected doesn't contain VRChat.exe! please try again!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        string pathedited = path.Replace(@"\VRChat.exe", "");
+                        installPath = pathedited;
+                        return pathedited;
+                    }
+                    else
+                    {
+                        MessageBox.Show("The directory you selected doesn't contain VRChat.exe! please try again!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     }
                     else
                     {
@@ -165,15 +210,19 @@ namespace VRCModManager.Core
         }
         public string ManualFind()
         {
-            using (var folderDialog = new FolderBrowserDialog())
+            using (var folderDialog = new OpenFileDialog())
             {
+                folderDialog.Title = "Select VRChat.exe";
+                folderDialog.FileName = "VRChat.exe";
+                folderDialog.Filter = "VRChat Executable|VRChat.exe";
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string path = folderDialog.SelectedPath;
-                    if (File.Exists(Path.Combine(path, AppFileName)))
+                    string path = folderDialog.FileName;
+                    if (path.Contains("VRChat.exe"))
                     {
-                        installPath = path;
-                        return folderDialog.SelectedPath;
+                        string pathedited = path.Replace(@"\VRChat.exe", "");
+                        installPath = pathedited;
+                        return pathedited;
                     }
                     else
                     {
