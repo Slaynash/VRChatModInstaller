@@ -56,11 +56,14 @@
             this.linkLabelUmbranox = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.buttonModsFolderOpen = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.ResetBTN = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPageExternal = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
             this.buttonViewInfo = new System.Windows.Forms.Button();
             this.panelInfo = new System.Windows.Forms.Panel();
             this.tableLayoutPanelInfo = new System.Windows.Forms.TableLayoutPanel();
@@ -70,9 +73,6 @@
             this.helpInfoLabel3 = new System.Windows.Forms.Label();
             this.buttonOculus = new System.Windows.Forms.Button();
             this.buttonSteam = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.buttonModsFolderOpen = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabPageCore.SuspendLayout();
             this.contextMenuStripMain.SuspendLayout();
@@ -363,6 +363,26 @@
             this.tabPageSettings.Text = "Settings";
             this.tabPageSettings.UseVisualStyleBackColor = true;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(17, 114);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(133, 13);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "Manually manage Mods:";
+            // 
+            // buttonModsFolderOpen
+            // 
+            this.buttonModsFolderOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonModsFolderOpen.Location = new System.Drawing.Point(157, 109);
+            this.buttonModsFolderOpen.Name = "buttonModsFolderOpen";
+            this.buttonModsFolderOpen.Size = new System.Drawing.Size(121, 23);
+            this.buttonModsFolderOpen.TabIndex = 13;
+            this.buttonModsFolderOpen.Text = "Open Mods Folder";
+            this.buttonModsFolderOpen.UseVisualStyleBackColor = true;
+            this.buttonModsFolderOpen.Click += new System.EventHandler(this.ButtonModsFolderOpen_Click);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -413,6 +433,16 @@
             this.tabPageExternal.TabIndex = 3;
             this.tabPageExternal.Text = "External Mods";
             this.tabPageExternal.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.Location = new System.Drawing.Point(217, 104);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(112, 14);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "Work in Progress";
             // 
             // buttonViewInfo
             // 
@@ -466,7 +496,7 @@
             this.helpInfoLabel1.AutoSize = true;
             this.helpInfoLabel1.Location = new System.Drawing.Point(3, 0);
             this.helpInfoLabel1.Name = "helpInfoLabel1";
-            this.helpInfoLabel1.Size = new System.Drawing.Size(469, 13);
+            this.helpInfoLabel1.Size = new System.Drawing.Size(260, 13);
             this.helpInfoLabel1.TabIndex = 0;
             this.helpInfoLabel1.Text = "Most mods will install a .dll into the Mods folder:";
             // 
@@ -526,36 +556,6 @@
             this.buttonSteam.Text = "Steam";
             this.buttonSteam.UseVisualStyleBackColor = true;
             this.buttonSteam.Click += new System.EventHandler(this.buttonSteam_Click);
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.Location = new System.Drawing.Point(217, 104);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(112, 14);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "Work in Progress";
-            // 
-            // buttonModsFolderOpen
-            // 
-            this.buttonModsFolderOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonModsFolderOpen.Location = new System.Drawing.Point(157, 109);
-            this.buttonModsFolderOpen.Name = "buttonModsFolderOpen";
-            this.buttonModsFolderOpen.Size = new System.Drawing.Size(121, 23);
-            this.buttonModsFolderOpen.TabIndex = 13;
-            this.buttonModsFolderOpen.Text = "Open Mods Folder";
-            this.buttonModsFolderOpen.UseVisualStyleBackColor = true;
-            this.buttonModsFolderOpen.Click += new System.EventHandler(this.ButtonModsFolderOpen_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(17, 114);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(133, 13);
-            this.label10.TabIndex = 15;
-            this.label10.Text = "Manually manage Mods:";
             // 
             // FormMain
             // 
