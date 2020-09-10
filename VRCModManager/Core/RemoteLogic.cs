@@ -13,10 +13,9 @@ namespace VRCModManager.Core
 {
     public class RemoteLogic
     {
-        private const string ModSaberURL = "https://vrcmodmanager.slaynash.fr";
+        private const string RubyURL = "http://client.ruby-core.com";
 
-        private const string ApiVersion = "1.2";
-        private readonly string ApiURL = $"{ModSaberURL}/api/v{ApiVersion}";
+        private readonly string ApiURL = $"{RubyURL}/api/";
 
         public List<ReleaseInfo> releases;
 
@@ -30,6 +29,7 @@ namespace VRCModManager.Core
         {
             releases.Clear();
 
+            /*
             string raw = GetModSaberReleases();
             if (raw != null)
             {
@@ -37,7 +37,7 @@ namespace VRCModManager.Core
                 for (int i = 0; i < mods.Count; i++)
                 {
                     var current = mods[i];
-
+                    
                     List<ModLink> dependsOn = NodeToLinks(current["links"]["dependencies"]);
                     List<ModLink> conflictsWith = NodeToLinks(current["links"]["conflicts"]);
 
@@ -64,6 +64,23 @@ namespace VRCModManager.Core
                             current["meta"]["loader"], current["details"]["description"], current["meta"]["weight"], current["gameVersion"]["value"],
                             files["steam"]["url"], current["meta"]["category"], Platform.Default, dependsOn, conflictsWith));
                     }
+                }
+            }
+            */
+
+            string raw = GetRubyReleases();
+            if (raw != null)
+            {
+                var mods = JSON.Parse(raw);
+                for (int i = 0; i < mods.Count; i++)
+                {
+                    var currentVersions = (JSONArray)mods[i]["versions"];
+
+                    var current = currentVersions[currentVersions.Count - 1];
+
+                    CreateRelease(
+                        new ReleaseInfo(current["name"], current["name"], current["modversion"], current["author"],
+                        "MelonLoader", current["description"], 0, current["vrchatversion"], current["downloadlink"], "All", Platform.Default, new List<ModLink>(), new List<ModLink>()));
                 }
             }
         }
@@ -97,28 +114,15 @@ namespace VRCModManager.Core
 
         private string Fetch(string URL) => Helper.Get(URL);
 
-        private string GetModSaberReleases()
+        private string GetRubyReleases()
         {
-            string raw = Fetch($"{ApiURL}/mods/approved/all");
-            var decoded = JSON.Parse(raw);
-            int lastPage = decoded["lastPage"];
-
-            JSONArray final = new JSONArray();
-
-            for (int i = 0; i <= lastPage; i++)
-            {
-                string page = Fetch($"{ApiURL}/mods/approved/all/{i}");
-                var pageDecoded = JSON.Parse(page);
-                var mods = pageDecoded["mods"];
-
-                foreach (var x in mods)
-                    final.Add(x.Value);
-            }
-            return final.ToString();
+            return Fetch($"{ApiURL}mods.json");
         }
 
         private void CreateRelease(ReleaseInfo release)
         {
+            releases.Add(release);
+            /*
             ReleaseInfo current = releases.Find(x => x.name == release.name);
             if (current == null)
             {
@@ -141,7 +145,8 @@ namespace VRCModManager.Core
                 }
                 releases.Add(release);
             }
-           
+            */
+
         }
     }
 }

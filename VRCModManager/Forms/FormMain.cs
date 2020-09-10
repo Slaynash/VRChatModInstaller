@@ -39,7 +39,9 @@ namespace VRCModManager
         {
             try
             {
+                #if !DEBUG
                 updater.CheckForUpdates();
+                #endif
                 textBoxDirectory.Text = path.GetInstallationPath();
              
                 new Thread(() => { RemoteLoad(); }).Start();
