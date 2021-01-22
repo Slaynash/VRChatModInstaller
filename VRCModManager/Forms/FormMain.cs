@@ -74,30 +74,30 @@ namespace VRCModManager
             {
                 ListViewItem item = new ListViewItem
                 {
-                    Text = release.title,
+                    Text = release.modName,
                     Tag = release
                 };
 
-                item.SubItems.Add(release.loader);
+                item.SubItems.Add(release.melonVersion);
                 item.SubItems.Add(release.gameVersion);
-                item.SubItems.Add(release.author);
-                item.SubItems.Add(release.version);
+                item.SubItems.Add(release.modAuthor);
+                item.SubItems.Add(release.modVersion);
 
-                if (release.platform == path.platform || release.platform == Platform.Default)
+                if (release.modPlatform == path.platform || release.modPlatform == Platform.Default)
                 {
-                    if (release.category == "")
+                    if (release.modCategory == "")
                     {
                         item.Group = listViewMods.Groups[other];
                     }
-                    else if (groups.ContainsKey(release.category))
+                    else if (groups.ContainsKey(release.modCategory))
                     {
-                        int index = groups[release.category];
+                        int index = groups[release.modCategory];
                         item.Group = listViewMods.Groups[index];
                     }
                     else
                     {
-                        int index = listViewMods.Groups.Add(new ListViewGroup(release.category, HorizontalAlignment.Left));
-                        groups.Add(release.category, index);
+                        int index = listViewMods.Groups.Add(new ListViewGroup(release.modCategory, HorizontalAlignment.Left));
+                        groups.Add(release.modCategory, index);
                         item.Group = listViewMods.Groups[index];
                     }
 
@@ -136,10 +136,10 @@ namespace VRCModManager
 
         private void CheckDefaultMod(ReleaseInfo release, ListViewItem item)
         {
-            string name = release.name.ToLower();
+            string name = release.modName.ToLower();
             if (name == "vrcmodloader")
             {
-                item.Text = $"[REQUIRED] {release.title}";
+                item.Text = $"[REQUIRED] {release.modName}";
                 item.BackColor = Color.LightGray;
                 release.disabled = true;
 
@@ -199,14 +199,14 @@ namespace VRCModManager
 
             if (e.Item.Checked)
             {
-                if (release.dependsOn.Count > 0)
+                if (release.modDependsOn.Count > 0)
                 {
-                    foreach (ModLink dependency in release.dependsOn)
+                    foreach (ModLink dependency in release.modDependsOn)
                     {
                         foreach (ListViewItem lvi in listViewMods.Items)
                         {
                             ReleaseInfo check = (ReleaseInfo)lvi.Tag;
-                            if (check.name == dependency.name)
+                            if (check.modName == dependency.name)
                             {
                                 check.itemHandle.Checked = true;
                             }
@@ -217,14 +217,14 @@ namespace VRCModManager
 
             if (e.Item.Checked)
             {
-                if (release.conflictsWith.Count > 0)
+                if (release.modConflictsWith.Count > 0)
                 {
-                    foreach (ModLink dependency in release.conflictsWith)
+                    foreach (ModLink dependency in release.modConflictsWith)
                     {
                         foreach (ListViewItem lvi in listViewMods.Items)
                         {
                             ReleaseInfo check = (ReleaseInfo)lvi.Tag;
-                            if (check.name == dependency.name)
+                            if (check.modName == dependency.name)
                             {
                                 check.itemHandle.Checked = false;
                                 check.disabled = true;
@@ -235,14 +235,14 @@ namespace VRCModManager
             }
             else
             {
-                if (release.conflictsWith.Count > 0)
+                if (release.modConflictsWith.Count > 0)
                 {
-                    foreach (ModLink dependency in release.conflictsWith)
+                    foreach (ModLink dependency in release.modConflictsWith)
                     {
                         foreach (ListViewItem lvi in listViewMods.Items)
                         {
                             ReleaseInfo check = (ReleaseInfo)lvi.Tag;
-                            if (check.name == dependency.name)
+                            if (check.modName == dependency.name)
                             {
                                 check.disabled = false;
                             }
@@ -264,11 +264,11 @@ namespace VRCModManager
                 {
                     item.Checked = release.install;
                     item.BackColor = Color.LightGray;
-                    item.Text = $"[{(release.install ? "REQUIRED" : "CONFLICT")}] {release.title}";
+                    item.Text = $"[{(release.install ? "REQUIRED" : "CONFLICT")}] {release.modName}";
                 }
                 else
                 {
-                    item.Text = release.title;
+                    item.Text = release.modName;
                     item.BackColor = Color.White;
                 }
                 CheckDefaultMod(release, item);

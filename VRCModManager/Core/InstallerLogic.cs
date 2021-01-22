@@ -43,32 +43,32 @@ namespace VRCModManager.Core
                     {
                         if (release.install)
                         {
-                            StatusUpdate(string.Format("Downloading {0}...", release.title));
+                            StatusUpdate(string.Format("Downloading {0}...", release.modName));
                             if (!modsDirectory.Exists) Directory.CreateDirectory(modsDirectory.FullName);
-                            if (release.downloadLink.Split('?')[0].EndsWith(".dll"))
+                            if (release.modDownloadLink.Split('?')[0].EndsWith(".dll"))
                             {
                                 foreach(string f in from filepath in (Directory.GetFiles(modsDirectory.FullName))
-                                                    where (Path.GetFileName(filepath).ToLower().StartsWith(release.name.ToLower() + ".") && filepath.ToLower().EndsWith(".dll"))
+                                                    where (Path.GetFileName(filepath).ToLower().StartsWith(release.modName.ToLower() + ".") && filepath.ToLower().EndsWith(".dll"))
                                                     select filepath)
                                 {
                                     File.Delete(f);
                                 }
 
-                                Helper.DownloadFile(release.downloadLink, installDirectory, release.name, release.version);
+                                Helper.DownloadFile(release.modDownloadLink, installDirectory, release.modName, release.modVersion);
                             }
                             else
                             {
-                                byte[] file = Helper.GetFile(release.downloadLink);
-                                StatusUpdate(string.Format("Unzipping {0}...", release.title));
+                                byte[] file = Helper.GetFile(release.modDownloadLink);
+                                StatusUpdate(string.Format("Unzipping {0}...", release.modName));
                                 Helper.UnzipFile(file, installDirectory);
-                                StatusUpdate(string.Format("Unzipped {0}", release.title));
+                                StatusUpdate(string.Format("Unzipped {0}", release.modName));
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        StatusUpdate("Install failed! (" + release.title + ")");
-                        MessageBox.Show("Install failed!\nUnable to install mod " + release.title + " :\n" + ex.ToString());
+                        StatusUpdate("Install failed! (" + release.modName + ")");
+                        MessageBox.Show("Install failed!\nUnable to install mod " + release.modName + " :\n" + ex.ToString());
                         return;
                     }
                 }

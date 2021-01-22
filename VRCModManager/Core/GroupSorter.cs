@@ -38,7 +38,7 @@ namespace VRCModManager.Core
             foreach (ListViewItem item in items)
             {
                 ReleaseInfo release = (ReleaseInfo)item.Tag;
-                weight += release.weight;
+                //weight += release.weight;
             }
 
             return weight / items.Count;

@@ -13,12 +13,12 @@ namespace VRCModManager
         {
             InitializeComponent();
             _release = release;
-            labelTitle.Text = string.Format("{0} by {1} {2}", release.title, release.author, release.version);
+            labelTitle.Text = string.Format("{0} by {1} {2}", release.modName, release.modAuthor, release.modVersion);
             DescriptionHandler();
         }
         private void DescriptionHandler()
         {
-            string description = CommonMarkConverter.Convert(_release.description);
+            string description = CommonMarkConverter.Convert(_release.modDescription);
             webBrowserDescription.DocumentText = description;
         }
         private void buttonClose_Click(object sender, EventArgs e)
@@ -28,9 +28,9 @@ namespace VRCModManager
 
         private void linkLabelDirectLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (_release.downloadLink.StartsWith("https://"))
+            if (_release.modDownloadLink.StartsWith("https://"))
             {
-                Process.Start(_release.downloadLink);
+                Process.Start(_release.modDownloadLink);
             }
         }
 
