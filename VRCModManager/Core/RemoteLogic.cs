@@ -79,10 +79,23 @@ namespace VRCModManager.Core
                     var current = currentVersions[currentVersions.Count - 1];
 
                     CreateRelease(
-                        new ReleaseInfo(current["name"], current["modversion"], current["author"],
-                        current["description"], current["loaderversion"], current["vrchatversion"], 
-                        current["downloadlink"], "All", Platform.Default, new List<ModLink>(), new List<ModLink>()));
+                        new ReleaseInfo(
+                            current["name"],
+                            current["modversion"],
+                            (current["author"].ToString().Trim('"').StartsWith("<@!") ? current["discord"].ToString().Trim('"').Split('#')[0] : current["author"].ToString().Trim('"')),
+                            current["description"],
+                            current["loaderversion"],
+                            current["vrchatversion"], 
+                            current["downloadlink"],
+                            "All",
+                            Platform.Default,
+                            new List<ModLink>(),
+                            new List<ModLink>()
+                        )
+                    );
+
                 }
+                releases = releases.OrderBy(x => x.modName).ToList();
             }
         }
 
