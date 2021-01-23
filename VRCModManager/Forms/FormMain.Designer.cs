@@ -73,6 +73,7 @@
             this.helpInfoLabel3 = new System.Windows.Forms.Label();
             this.buttonOculus = new System.Windows.Forms.Button();
             this.buttonSteam = new System.Windows.Forms.Button();
+            this.columnHeaderInstalled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControlMain.SuspendLayout();
             this.tabPageCore.SuspendLayout();
             this.contextMenuStripMain.SuspendLayout();
@@ -90,7 +91,7 @@
             this.textBoxDirectory.Enabled = false;
             this.textBoxDirectory.Location = new System.Drawing.Point(10, 25);
             this.textBoxDirectory.Name = "textBoxDirectory";
-            this.textBoxDirectory.Size = new System.Drawing.Size(381, 26);
+            this.textBoxDirectory.Size = new System.Drawing.Size(381, 22);
             this.textBoxDirectory.TabIndex = 0;
             this.textBoxDirectory.TextChanged += new System.EventHandler(this.textBoxDirectory_TextChanged);
             // 
@@ -110,7 +111,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 19);
+            this.label1.Size = new System.Drawing.Size(110, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "VRChat Folder Path:";
             // 
@@ -154,10 +155,10 @@
             // tabPageCore
             // 
             this.tabPageCore.Controls.Add(this.listViewMods);
-            this.tabPageCore.Location = new System.Drawing.Point(4, 28);
+            this.tabPageCore.Location = new System.Drawing.Point(4, 22);
             this.tabPageCore.Name = "tabPageCore";
             this.tabPageCore.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCore.Size = new System.Drawing.Size(558, 223);
+            this.tabPageCore.Size = new System.Drawing.Size(558, 229);
             this.tabPageCore.TabIndex = 0;
             this.tabPageCore.Text = "Mods";
             this.tabPageCore.UseVisualStyleBackColor = true;
@@ -170,10 +171,11 @@
             this.listViewMods.CheckBoxes = true;
             this.listViewMods.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderName,
+            this.columnHeaderInstalled,
+            this.columnHeaderVersion,
             this.columnHeaderLoader,
             this.columnHeaderGameVersion,
-            this.columnHeaderAuthor,
-            this.columnHeaderVersion});
+            this.columnHeaderAuthor});
             this.listViewMods.ContextMenuStrip = this.contextMenuStripMain;
             this.listViewMods.FullRowSelect = true;
             this.listViewMods.HideSelection = false;
@@ -204,7 +206,6 @@
             // columnHeaderAuthor
             // 
             this.columnHeaderAuthor.Text = "Author";
-            this.columnHeaderAuthor.Width = 113;
             // 
             // columnHeaderVersion
             // 
@@ -216,12 +217,12 @@
             this.contextMenuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewInfoToolStripMenuItem});
             this.contextMenuStripMain.Name = "contextMenuStripMain";
-            this.contextMenuStripMain.Size = new System.Drawing.Size(141, 28);
+            this.contextMenuStripMain.Size = new System.Drawing.Size(124, 26);
             // 
             // viewInfoToolStripMenuItem
             // 
             this.viewInfoToolStripMenuItem.Name = "viewInfoToolStripMenuItem";
-            this.viewInfoToolStripMenuItem.Size = new System.Drawing.Size(140, 24);
+            this.viewInfoToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.viewInfoToolStripMenuItem.Text = "View Info";
             this.viewInfoToolStripMenuItem.Click += new System.EventHandler(this.viewInfoToolStripMenuItem_Click);
             // 
@@ -236,9 +237,9 @@
             this.tabPageCreditsHelp.Controls.Add(this.labelDiscordInfo);
             this.tabPageCreditsHelp.Controls.Add(this.linkLabelUmbranox);
             this.tabPageCreditsHelp.Controls.Add(this.label3);
-            this.tabPageCreditsHelp.Location = new System.Drawing.Point(4, 28);
+            this.tabPageCreditsHelp.Location = new System.Drawing.Point(4, 22);
             this.tabPageCreditsHelp.Name = "tabPageCreditsHelp";
-            this.tabPageCreditsHelp.Size = new System.Drawing.Size(558, 223);
+            this.tabPageCreditsHelp.Size = new System.Drawing.Size(558, 229);
             this.tabPageCreditsHelp.TabIndex = 1;
             this.tabPageCreditsHelp.Text = "Credits and Help";
             this.tabPageCreditsHelp.UseVisualStyleBackColor = true;
@@ -251,7 +252,7 @@
             this.linkLabelDiscord.Location = new System.Drawing.Point(216, 169);
             this.linkLabelDiscord.Name = "linkLabelDiscord";
             this.linkLabelDiscord.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.linkLabelDiscord.Size = new System.Drawing.Size(129, 19);
+            this.linkLabelDiscord.Size = new System.Drawing.Size(108, 13);
             this.linkLabelDiscord.TabIndex = 1;
             this.linkLabelDiscord.TabStop = true;
             this.linkLabelDiscord.Text = "discord.gg/rCqKSvR";
@@ -264,7 +265,7 @@
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Location = new System.Drawing.Point(281, 84);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(72, 19);
+            this.linkLabel2.Size = new System.Drawing.Size(58, 13);
             this.linkLabel2.TabIndex = 11;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Janni9009";
@@ -276,7 +277,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(195, 84);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(108, 19);
+            this.label6.Size = new System.Drawing.Size(88, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "QoL changes by";
             this.label6.Click += new System.EventHandler(this.Label6_Click);
@@ -287,7 +288,7 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Location = new System.Drawing.Point(292, 60);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(62, 19);
+            this.linkLabel1.Size = new System.Drawing.Size(52, 13);
             this.linkLabel1.TabIndex = 9;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Slaynash";
@@ -299,7 +300,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(219, 137);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 19);
+            this.label4.Size = new System.Drawing.Size(94, 13);
             this.label4.TabIndex = 2;
             this.label4.Text = "Need more help?";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -310,7 +311,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(195, 60);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(122, 19);
+            this.label5.Size = new System.Drawing.Size(100, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "VRChat version by";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -321,7 +322,7 @@
             this.labelDiscordInfo.AutoSize = true;
             this.labelDiscordInfo.Location = new System.Drawing.Point(194, 153);
             this.labelDiscordInfo.Name = "labelDiscordInfo";
-            this.labelDiscordInfo.Size = new System.Drawing.Size(170, 19);
+            this.labelDiscordInfo.Size = new System.Drawing.Size(143, 13);
             this.labelDiscordInfo.TabIndex = 0;
             this.labelDiscordInfo.Text = "Join the VRCTools discord!";
             this.labelDiscordInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -332,7 +333,7 @@
             this.linkLabelUmbranox.AutoSize = true;
             this.linkLabelUmbranox.Location = new System.Drawing.Point(329, 37);
             this.linkLabelUmbranox.Name = "linkLabelUmbranox";
-            this.linkLabelUmbranox.Size = new System.Drawing.Size(73, 19);
+            this.linkLabelUmbranox.Size = new System.Drawing.Size(60, 13);
             this.linkLabelUmbranox.TabIndex = 4;
             this.linkLabelUmbranox.TabStop = true;
             this.linkLabelUmbranox.Text = "Umbranox";
@@ -344,7 +345,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(147, 37);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(221, 19);
+            this.label3.Size = new System.Drawing.Size(185, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "Mod Installer originally created by ";
             // 
@@ -356,10 +357,10 @@
             this.tabPageSettings.Controls.Add(this.ResetBTN);
             this.tabPageSettings.Controls.Add(this.label7);
             this.tabPageSettings.Controls.Add(this.comboBox1);
-            this.tabPageSettings.Location = new System.Drawing.Point(4, 28);
+            this.tabPageSettings.Location = new System.Drawing.Point(4, 22);
             this.tabPageSettings.Name = "tabPageSettings";
             this.tabPageSettings.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSettings.Size = new System.Drawing.Size(558, 223);
+            this.tabPageSettings.Size = new System.Drawing.Size(558, 229);
             this.tabPageSettings.TabIndex = 2;
             this.tabPageSettings.Text = "Settings";
             this.tabPageSettings.UseVisualStyleBackColor = true;
@@ -369,7 +370,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(17, 114);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(160, 19);
+            this.label10.Size = new System.Drawing.Size(133, 13);
             this.label10.TabIndex = 15;
             this.label10.Text = "Manually manage Mods:";
             // 
@@ -389,7 +390,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(17, 76);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(130, 19);
+            this.label8.Size = new System.Drawing.Size(111, 13);
             this.label8.TabIndex = 14;
             this.label8.Text = "Reset install button:";
             // 
@@ -409,7 +410,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(17, 38);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(127, 19);
+            this.label7.Size = new System.Drawing.Size(108, 13);
             this.label7.TabIndex = 1;
             this.label7.Text = "Oculus install drive:";
             // 
@@ -419,7 +420,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(157, 35);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 27);
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.DropDown += new System.EventHandler(this.ComboBox1_DropDown);
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
@@ -428,9 +429,9 @@
             // tabPageExternal
             // 
             this.tabPageExternal.Controls.Add(this.label9);
-            this.tabPageExternal.Location = new System.Drawing.Point(4, 28);
+            this.tabPageExternal.Location = new System.Drawing.Point(4, 22);
             this.tabPageExternal.Name = "tabPageExternal";
-            this.tabPageExternal.Size = new System.Drawing.Size(558, 223);
+            this.tabPageExternal.Size = new System.Drawing.Size(558, 229);
             this.tabPageExternal.TabIndex = 3;
             this.tabPageExternal.Text = "External Mods";
             this.tabPageExternal.UseVisualStyleBackColor = true;
@@ -497,7 +498,7 @@
             this.helpInfoLabel1.AutoSize = true;
             this.helpInfoLabel1.Location = new System.Drawing.Point(3, 0);
             this.helpInfoLabel1.Name = "helpInfoLabel1";
-            this.helpInfoLabel1.Size = new System.Drawing.Size(306, 14);
+            this.helpInfoLabel1.Size = new System.Drawing.Size(260, 13);
             this.helpInfoLabel1.TabIndex = 0;
             this.helpInfoLabel1.Text = "Most mods will install a .dll into the Mods folder:";
             // 
@@ -506,7 +507,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(3, 56);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(448, 19);
+            this.label2.Size = new System.Drawing.Size(378, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Right click on a mod in the list below to view more info about that mod.";
             // 
@@ -521,7 +522,7 @@
             this.textBoxPluginsPath.Name = "textBoxPluginsPath";
             this.textBoxPluginsPath.ReadOnly = true;
             this.textBoxPluginsPath.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.textBoxPluginsPath.Size = new System.Drawing.Size(555, 19);
+            this.textBoxPluginsPath.Size = new System.Drawing.Size(555, 15);
             this.textBoxPluginsPath.TabIndex = 5;
             this.textBoxPluginsPath.Click += new System.EventHandler(this.textBoxPluginsPath_Click);
             this.textBoxPluginsPath.Leave += new System.EventHandler(this.textBoxPluginsPath_Leave);
@@ -531,7 +532,7 @@
             this.helpInfoLabel3.AutoSize = true;
             this.helpInfoLabel3.Location = new System.Drawing.Point(3, 42);
             this.helpInfoLabel3.Name = "helpInfoLabel3";
-            this.helpInfoLabel3.Size = new System.Drawing.Size(523, 14);
+            this.helpInfoLabel3.Size = new System.Drawing.Size(502, 13);
             this.helpInfoLabel3.TabIndex = 3;
             this.helpInfoLabel3.Text = "You can uninstall mods by removing the .dll from that folder. Its accessible from" +
     " the Settings tab.";
@@ -558,9 +559,13 @@
             this.buttonSteam.UseVisualStyleBackColor = true;
             this.buttonSteam.Click += new System.EventHandler(this.buttonSteam_Click);
             // 
+            // columnHeaderInstalled
+            // 
+            this.columnHeaderInstalled.Text = "Installed";
+            // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(588, 436);
             this.Controls.Add(this.buttonSteam);
@@ -640,5 +645,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button buttonModsFolderOpen;
+        private System.Windows.Forms.ColumnHeader columnHeaderInstalled;
     }
 }

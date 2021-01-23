@@ -10,6 +10,8 @@ using System.Drawing;
 using SemVer;
 using System.IO;
 using Version = SemVer.Version;
+using Mono.Cecil;
+using System.Reflection;
 
 namespace VRCModManager
 {
@@ -35,15 +37,17 @@ namespace VRCModManager
         #endregion
 
         #region Loading
+        private Dictionary<string, string> installedMods = new Dictionary<string, string>();
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             try
             {
-                #if !DEBUG
+#if !DEBUG
                 updater.CheckForUpdates();
-                #endif
+#endif
                 textBoxDirectory.Text = path.GetInstallationPath();
-             
+
                 new Thread(() => { RemoteLoad(); }).Start();
             }
             catch (Exception ex)
@@ -64,6 +68,8 @@ namespace VRCModManager
 
         private void ShowReleases()
         {
+            RefreshInstalledMods();
+
             Dictionary<string, int> groups = new Dictionary<string, int>();
 
             listViewMods.Groups.Clear();
@@ -78,10 +84,15 @@ namespace VRCModManager
                     Tag = release
                 };
 
+                if (installedMods.TryGetValue(release.modName, out string installedModVersion))
+                    item.SubItems.Add(installedModVersion);
+                else
+                    item.SubItems.Add("");
+
+                item.SubItems.Add(release.modVersion);
                 item.SubItems.Add(release.melonVersion);
                 item.SubItems.Add(release.gameVersion);
                 item.SubItems.Add(release.modAuthor);
-                item.SubItems.Add(release.modVersion);
 
                 if (release.modPlatform == path.platform || release.modPlatform == Platform.Default)
                 {
@@ -103,10 +114,10 @@ namespace VRCModManager
 
                     listViewMods.Items.Add(item);
                     release.itemHandle = item;
-                   
+
                 }
             }
-            
+
             ListViewGroup[] sortedGroups = new ListViewGroup[this.listViewMods.Groups.Count];
 
             listViewMods.Groups.CopyTo(sortedGroups, 0);
@@ -121,6 +132,33 @@ namespace VRCModManager
 
             UpdateStatus("Releases loaded.");
             tabControlMain.Enabled = true;
+        }
+
+        private void RefreshInstalledMods()
+        {
+            installedMods.Clear();
+
+            if (installer.modsDirectory.Exists)
+            {
+                foreach (FileInfo file in installer.modsDirectory.GetFiles("*.dll"))
+                {
+                    try
+                    {
+
+                    }
+                    catch (Exception) { }
+
+                    AssemblyDefinition assembly = AssemblyDefinition.ReadAssembly(file.FullName);
+
+                    CustomAttribute melonInfoAttribute = assembly.CustomAttributes.First(a =>
+                        a.AttributeType.Name == "MelonModInfoAttribute" || a.AttributeType.Name == "MelonInfoAttribute");
+
+                    string modName = melonInfoAttribute.ConstructorArguments[1].Value as string;
+                    string modVersion = melonInfoAttribute.ConstructorArguments[2].Value as string;
+
+                    installedMods.Add(modName, modVersion);
+                }
+            }
         }
         #endregion
 
@@ -153,7 +191,13 @@ namespace VRCModManager
         private void Installer_StatusUpdate(string status)
         {
             UpdateStatus(status);
-            if (status == "Install complete!") { this.Invoke((MethodInvoker)(() => { buttonInstall.Enabled = true; })); }
+            if (status == "Install complete!") {
+                this.Invoke((MethodInvoker)(() =>
+                {
+                    buttonInstall.Enabled = true;
+                    ShowReleases();
+                }));
+            }
         }
         private void buttonInstall_Click(object sender, EventArgs e)
         {
@@ -170,18 +214,21 @@ namespace VRCModManager
         {
             textBoxDirectory.Text = path.ManualFind();
             installer.installDirectory = textBoxDirectory.Text;
+            this.Invoke((MethodInvoker)(() => { ShowReleases(); }));
         }
 
         private void buttonSteam_Click(object sender, EventArgs e)
         {
             textBoxDirectory.Text = path.GetSteamLocation();
             installer.installDirectory = textBoxDirectory.Text;
+            this.Invoke((MethodInvoker)(() => { ShowReleases(); }));
         }
 
         private void buttonOculus_Click(object sender, EventArgs e)
         {
             textBoxDirectory.Text = path.GetMoreValidOculusLocation();
             installer.installDirectory = textBoxDirectory.Text;
+            this.Invoke((MethodInvoker)(() => { ShowReleases(); }));
         }
 
         private void listViewMods_ItemChecked(object sender, ItemCheckedEventArgs e)
@@ -389,6 +436,7 @@ namespace VRCModManager
         }
 
         bool Drives = false;
+
         private void ComboBox1_DropDown(object sender, EventArgs e)
         {
             if (Drives == false)
