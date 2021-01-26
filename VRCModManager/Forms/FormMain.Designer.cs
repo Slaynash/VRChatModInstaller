@@ -39,10 +39,11 @@
             this.tabPageCore = new System.Windows.Forms.TabPage();
             this.listViewMods = new System.Windows.Forms.ListView();
             this.columnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderInstalled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderLoader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderGameVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAuthor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.viewInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPageCreditsHelp = new System.Windows.Forms.TabPage();
@@ -73,7 +74,6 @@
             this.helpInfoLabel3 = new System.Windows.Forms.Label();
             this.buttonOculus = new System.Windows.Forms.Button();
             this.buttonSteam = new System.Windows.Forms.Button();
-            this.columnHeaderInstalled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControlMain.SuspendLayout();
             this.tabPageCore.SuspendLayout();
             this.contextMenuStripMain.SuspendLayout();
@@ -193,6 +193,14 @@
             this.columnHeaderName.Text = "Name";
             this.columnHeaderName.Width = 172;
             // 
+            // columnHeaderInstalled
+            // 
+            this.columnHeaderInstalled.Text = "Installed";
+            // 
+            // columnHeaderVersion
+            // 
+            this.columnHeaderVersion.Text = "Version";
+            // 
             // columnHeaderLoader
             // 
             this.columnHeaderLoader.Text = "Loader";
@@ -206,10 +214,6 @@
             // columnHeaderAuthor
             // 
             this.columnHeaderAuthor.Text = "Author";
-            // 
-            // columnHeaderVersion
-            // 
-            this.columnHeaderVersion.Text = "Version";
             // 
             // contextMenuStripMain
             // 
@@ -558,10 +562,6 @@
             this.buttonSteam.Text = "Steam";
             this.buttonSteam.UseVisualStyleBackColor = true;
             this.buttonSteam.Click += new System.EventHandler(this.buttonSteam_Click);
-            // 
-            // columnHeaderInstalled
-            // 
-            this.columnHeaderInstalled.Text = "Installed";
             // 
             // FormMain
             // 
